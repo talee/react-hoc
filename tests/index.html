@@ -6,6 +6,14 @@
   <body>
     <h1>ReactHOC Test</h1>
     <div id='container'></div>
-    <script async src='bundle.js'></script>
+    <script src='bundle.js'></script>
+    <script>
+      class Renderer {
+        render(component, componentProps, container) {
+          console.log(arguments)
+        }
+      }
+      new ReactHOC({renderer: Renderer})
+    </script>
   </body>
 </html>
