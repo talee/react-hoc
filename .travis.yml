@@ -1,0 +1,12 @@
+# Use container based architecture for caching
+sudo: false
+language: node_js
+node_js:
+    - "node"
+    - "4"
+install:
+    - npm update
+script: node_modules/gulp/bin/gulp.js build
+cache:
+    directories:
+        - node_modules/
