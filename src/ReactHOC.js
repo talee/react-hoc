@@ -23,10 +23,24 @@ export default class ReactHOC {
     this.renderer = options.renderer
   }
 
+  /**
+   * Waits for 'ready' event after calling the given load function, otherwise
+   * if no load function is given, immediately render the component.
+   * @param {object} props 
+   * Must have the properties:
+   * container, component
+   *
+   * Optional:
+   * componentProps, load
+   */
   load(props) {
     const renderable = new Renderable(props)
     renderable.on('ready', () => this.render(renderable))
-    renderable.load()
+    if (typeof renderable.load == 'function') {
+      renderable.load()
+    } else {
+      this.render(renderable)
+    }
   }
 
   render(renderable) {
